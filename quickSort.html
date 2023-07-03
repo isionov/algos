@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .card {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, p {
+            margin: 0 0 15px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>Quick Sort</h1>
+    <h2>Algorithm Type</h2>
+    <p>Divide and Conquer Sorting Algorithm</p>
+
+    <h2>Description</h2>
+    <p>Quick Sort is a highly efficient sorting algorithm and is based on partitioning of an array of data into smaller
+        arrays.</p>
+
+    <h2>Pseudocode</h2>
+    <pre>
+procedure quicksort(A, lo, hi) is
+    if lo < hi then
+        p := partition(A, lo, hi)
+        quicksort(A, lo, p - 1)
+        quicksort(A, p + 1, hi)
+
+procedure partition(A, lo, hi) is
+    pivot := A[hi]
+    i := lo - 1
+    for j := lo to hi - 1 do
+        if A[j] < pivot then
+            i := i + 1
+            swap A[i] with A[j]
+    swap A[i + 1] with A[hi]
+    return i + 1
+        </pre>
+
+    <h2>Complexity Analysis</h2>
+    <p>Time Complexity: Best and average case - O(n log n). Worst case - O(n^2).</p>
+    <p>Space Complexity: O(log n) - due to recursive stack.</p>
+
+    <h2>Use Cases</h2>
+    <p>Commonly used in systems where worst case scenario does not frequently occur and space complexity is of concern,
+        like embedded systems.</p>
+
+    <h2>Properties</h2>
+    <p>Quick Sort is not stable, in-place and not adaptive.</p>
+
+    <h2>Algorithm Variants</h2>
+    <p>Hoare's Partition, Lomuto Partition, Randomized Quick Sort, Three-way Quick Sort, Dual Pivot Quick Sort.</p>
+
+    <h2>Visual Representation</h2>
+    <img src="https://simpledevcode.files.wordpress.com/2014/06/quicksort_21.png"
+         alt="Quick Sort Visual Representation">
+
+    <h2>Notes</h2>
+    <p>The partition scheme is important in quick sort as it determines the efficiency of the algorithm.</p>
+
+    <h2>Applications</h2>
+    <p>Used in commercial computing software, such as in database algorithms or in systems where space complexity is of
+        concern.</p>
+
+    <h2>Optimizations</h2>
+    <p>Use of median of three approach to choose the pivot can help optimize performance.</p>
+
+    <h2>Comparison with Other Algorithms</h2>
+    <p>Quicker in practice than other O(n log n) algorithms like Bubble Sort and Insertion Sort, however, it is not
+        stable.</p>
+
+    <h2>Historical Context</h2>
+    <p>Developed by British computer scientist Tony Hoare in 1959. It is still a commonly used algorithm for
+        sorting.</p>
+
+    <h2>Implementation in JS</h2>
+    <pre>
+function quickSort(array, left = 0, right = array.length - 1) {
+    if (left < right) {
+        let pivotIndex = partition(array, left, right);
+        quickSort(array, left, pivotIndex - 1);
+        quickSort(array, pivotIndex + 1, right);
+    }
+    return array;
+}
+
+function partition(array, left, right) {
+    let pivotElement = array[right];
+    let partitionIndex = left;
+
+    for (let j = left; j < right; j++) {
+        if (array[j] <= pivotElement) {
+            [array[j], array[partitionIndex]] = [array[partitionIndex], array[j]];
+            partitionIndex++;
+        }
+    }
+    [array[partitionIndex], array[right]] = [array[right], array[partitionIndex]];
+    return partitionIndex;
+}
+        </pre>
+</div>
+</body>
+</html>
